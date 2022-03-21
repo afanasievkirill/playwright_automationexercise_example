@@ -1,0 +1,42 @@
+{
+  "name": "playwright_automationexercise_example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --config=e2e.config.ts",
+    "test:e2e:chrome": "playwright test --config=e2e.config.ts --project=Chromium",
+    "test:e2e:firefox": "playwright test --config=e2e.config.ts --project=Firefox",
+    "test:e2e:webkit": "playwright test --config=e2e.config.ts --project=Webkit",
+    "codegen": "playwright codegen --target typescript -o codegen.spec.ts http://site.example",
+    "prettier": "npx prettier --write test/*",
+    "lint": "eslint ./test/**",
+    "lint:fix": "eslint ./test/** --fix",
+    "codestyle": "npm run prettier && npm run eslint ./test/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afanasievkirill/playwright_automationexercise_example.git"
+  },
+  "author": "aphk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/afanasievkirill/playwright_automationexercise_example/issues"
+  },
+  "homepage": "https://github.com/afanasievkirill/playwright_automationexercise_example#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.19.0",
+    "@types/node": "^17.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0"
+  }
+}
