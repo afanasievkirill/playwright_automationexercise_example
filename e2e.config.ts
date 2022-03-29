@@ -11,6 +11,7 @@ const config: PlaywrightTestConfig = {
 		ignoreHTTPSErrors: true,
 		video: 'retain-on-failure',
 		screenshot: 'only-on-failure',
+		acceptDownloads: true,
 	},
 	projects: [
 		{ name: 'Chromium', use: { browserName: 'chromium' } },
