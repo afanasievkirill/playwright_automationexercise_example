@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe('Products:', () => {
 	test.beforeEach(async ({ page }) => {
@@ -22,17 +23,19 @@ test.describe('Products:', () => {
 		await expect(page.locator('//*[contains(text(),"Brand:")]')).toBeVisible();
 	});
 
-	test('Test Case 9: Search Product', async ({ page }) => {
+	test('Test Case 21: Add review on product', async ({ page }) => {
 		await page.click('//*[contains(text()," Products")]');
 
 		await expect(page).toHaveURL('https://www.automationexercise.com/products');
+		await expect(page.locator('div[class="features_items"]')).toBeVisible();
 
-		await page.type('input#search_product', 'Polo');
-		await page.click('button#submit_search');
+		await page.locator('i[class="fa fa-plus-square"]').first().click();
 
-		await expect(page.locator('//*[contains(text(),"Searched Products")]')).toBeVisible();
-		await expect(page.locator('div[class="productinfo text-center"] p')).toHaveText(
-			'Premium Polo T-Shirts',
-		);
+		await page.type('#name', faker.name.findName());
+		await page.type('#email', faker.internet.email());
+		await page.type('#review', faker.lorem.paragraph());
+		await page.click('#button-review');
+
+		await expect(page.locator('//*[contains(text(),"Thank you for your review.")]')).toBeVisible();
 	});
 });
