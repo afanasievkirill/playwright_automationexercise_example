@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
+import { createUser } from '../../utils/user.helper';
+import { UserModel } from '../../model/user.interface';
 
 test.describe('Register user:', () => {
 	test.beforeEach(async ({ page }) => {
@@ -8,13 +9,13 @@ test.describe('Register user:', () => {
 	});
 
 	test('Test Case 1: Register User', async ({ page }) => {
-		const firstName = await faker.name.findName();
+		const userData: UserModel = createUser();
 
 		await page.click('i[class="fa fa-lock"]');
 		await expect(page.locator('//*[contains(text(),"New User Signup!")]')).toBeVisible();
 
-		await page.type('input[data-qa="signup-name"]', firstName);
-		await page.type('input[data-qa="signup-email"]', faker.internet.email());
+		await page.type('input[data-qa="signup-name"]', userData.name);
+		await page.type('input[data-qa="signup-email"]', userData.email);
 		await page.click('button[data-qa="signup-button"]');
 
 		await expect(page.locator('//*[contains(text(),"Enter Account Information")]')).toBeVisible();
@@ -28,16 +29,16 @@ test.describe('Register user:', () => {
 		await page.check('#newsletter');
 		await page.check('#optin');
 
-		await page.type('input[data-qa="first_name"]', firstName);
-		await page.type('input[data-qa="last_name"]', faker.name.lastName());
-		await page.type('input[data-qa="company"]', faker.company.companyName());
-		await page.type('input[data-qa="address"]', faker.address.streetAddress());
-		await page.type('input[data-qa="address2"]', faker.address.streetAddress());
+		await page.type('input[data-qa="first_name"]', userData.name);
+		await page.type('input[data-qa="last_name"]', userData.lastName);
+		await page.type('input[data-qa="company"]', userData.companyName);
+		await page.type('input[data-qa="address"]', userData.firstAdress);
+		await page.type('input[data-qa="address2"]', userData.secondAdress);
 		await page.selectOption('select[data-qa="country"]', 'Canada');
-		await page.type('input[data-qa="state"]', faker.address.state());
-		await page.type('input[data-qa="city"]', faker.address.city());
-		await page.type('input[data-qa="zipcode"]', faker.address.zipCode());
-		await page.type('input[data-qa="mobile_number"]', faker.phone.phoneNumber());
+		await page.type('input[data-qa="state"]', userData.state);
+		await page.type('input[data-qa="city"]', userData.city);
+		await page.type('input[data-qa="zipcode"]', userData.zip);
+		await page.type('input[data-qa="mobile_number"]', userData.phone);
 
 		await page.click('button[data-qa="create-account"]');
 
