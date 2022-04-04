@@ -4,7 +4,7 @@
 
 ## Описание
 
-Пример показывает использование фремворка Playwright для автоматизации тестирования.
+Пример использования фреймворка Playwright для автоматизации тестирования.
 
 Описание тестовых кейсов доступно по сслыкам: [UI](https://www.automationexercise.com/test_cases/) , [API](https://www.automationexercise.com/api_list/).
 

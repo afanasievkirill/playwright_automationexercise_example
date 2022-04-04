@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test --config=e2e.config.ts",
+    "test:api": "playwright test --config=api.config.ts",
     "test:e2e:chrome": "playwright test --config=e2e.config.ts --project=Chromium",
     "test:e2e:firefox": "playwright test --config=e2e.config.ts --project=Firefox",
     "test:e2e:webkit": "playwright test --config=e2e.config.ts --project=Webkit",

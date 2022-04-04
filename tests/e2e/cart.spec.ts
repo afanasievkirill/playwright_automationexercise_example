@@ -57,4 +57,14 @@ test.describe('Cart:', () => {
 		//await expect(page.locator(`#product-1 .cart_quantity button`)).toHaveText('4');
 		await expect(page.locator('//*[contains(text(),"Cart is empty!")]')).toBeVisible();
 	});
+
+	test('Test Case 22: Add to cart from Recommended items', async ({ page }) => {
+		await expect(page.locator('div.recommended_items h2[class="title text-center"]')).toBeVisible();
+		await page
+			.locator('div.recommended_items a[class="btn btn-default add-to-cart"]')
+			.first()
+			.click();
+		await page.click('//*[contains(text(),"View Cart")]');
+		await expect(page.locator('tr[id*=product]')).toBeVisible();
+	});
 });
